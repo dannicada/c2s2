@@ -25,5 +25,5 @@ class CustomUser(AbstractUser):
 
 class Secret(models.Model):
     secrete_key = models.IntegerField(blank=True, null=True)
-    sender = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL)
-    reciever = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL)
+    # sender = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL)
+    # reciever = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL)
