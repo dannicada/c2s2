@@ -4,8 +4,11 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import *
 from .models import Exchange
 from rest_framework import generics, serializers, status,permissions
+from dj_rest_auth.views import (LoginView, LogoutView, PasswordChangeView, UserDetailsView)
 
 # Create your views here.
+
+
 
 
 class UserView(ModelViewSet):
