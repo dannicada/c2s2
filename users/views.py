@@ -2,9 +2,11 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .serializers import *
-from .models import Exchange
 from rest_framework import generics, serializers, status,permissions
 from dj_rest_auth.views import (LoginView, LogoutView, PasswordChangeView, UserDetailsView)
+from django.contrib.auth import get_user_model
+
+UserModel = get_user_model()
 
 # Create your views here.
 
@@ -14,6 +16,7 @@ from dj_rest_auth.views import (LoginView, LogoutView, PasswordChangeView, UserD
 class UserView(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny, ]
+    queryset = UserModel.objects.all()
 
     def create(self, request, *args, **kwargs):
         """

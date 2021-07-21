@@ -13,7 +13,7 @@ from .managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    publickey = models.BigIntegerField(unique=True)
+    publickey = models.BigIntegerField(unique=True, blank=False, null=True,)
 
 
     USERNAME_FIELD = 'email'
