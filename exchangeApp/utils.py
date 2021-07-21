@@ -29,3 +29,4 @@ class DH_Endpoint(object):
         for c in encrypted_message:
             decrypted_message += chr(ord(c)-key)
         return decrypted_message
+

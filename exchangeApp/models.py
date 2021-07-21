@@ -7,5 +7,5 @@ from users.models import *
 class Exchange(models.Model):
     modulos = models.IntegerField(blank=True, null=True)
     prime = models.IntegerField(blank=True, null=True)
-    sender = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL, related_name='exchange_sender')
-    reciever = models.ForeignKey(to=CustomUser, null=True, on_delete=models.SET_NULL, related_name='exchange_reciever')
+    sender = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, related_name='exchange_sender')
+    reciever = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, related_name='exchange_reciever')
