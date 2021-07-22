@@ -30,3 +30,20 @@ class DH_Endpoint(object):
             decrypted_message += chr(ord(c)-key)
         return decrypted_message
 
+
+
+def init_DH_endpoints(instance, public_key1, public_key2, private_key1, private_key2):
+    sender = DH_Endpoint(public_key1, public_key2, private_key1)
+
+    reciever = DH_Endpoint(public_key1, public_key2, private_key2)
+
+    # generate sender's partial key
+    sender_partial=sender.generate_partial_key()
+    print(sender_partial)
+
+    # generate reciever's partial key
+    reciever_partial = reciever.generate_partial_key()
+    print(reciever_partial)
+
+
+

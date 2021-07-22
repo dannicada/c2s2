@@ -15,14 +15,14 @@ def generate_and_assign_publickey(sender, **kwargs):
     if created:
         try:        
             # generate 64 bit random number
-            user_public_key = random.getrandbits(64)
+            user_public_key = random.getrandbits(32)
 
             # assign random number to user
             instance.publickey = user_public_key
             instance.save()
         except IntegrityError:
             # handle integrity error by generating and assigning new random nuber
-            user_public_key = random.getrandbits(64)
+            user_public_key = random.getrandbits(32)
             instance.publickey = user_public_key
             pass
     

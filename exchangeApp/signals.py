@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.db import IntegrityError
 from django.contrib.auth import get_user_model
 from .models import *
+from .utils import *
 import random
 
 
@@ -15,15 +16,21 @@ def post_exchange_creation_routine(sender, **kwargs):
     instance, created = kwargs["instance"], kwargs["created"]
     if created:
         try:        
-            # generate 64 bit random number
-            user_public_key = random.getrandbits(64)
+            # use sender's publickey as base
+            instance.base = User.objects.get(id = instance.sender).publickey
 
-            # assign random number to user
-            instance.publickey = user_public_key
+            # use reciever's publickey as prime/modulo
+            instance.prime = User.objects.get(id = instance.reciever).publickey
+
             instance.save()
-        except IntegrityError:
-            # handle integrity error by generating and assigning new random nuber
-            user_public_key = random.getrandbits(64)
-            instance.publickey = user_public_key
-            pass
+           
+        except Exception as e:
+           raise e
     
+    else:
+        if instance.reciever_private_key is not None:
+
+            # generate sender's partial key
+            init_DH_endpoints(instance, instance.base, instance.prime, instance.sender_private_key, instance.reciever_private_key)
+        else:
+            pass
