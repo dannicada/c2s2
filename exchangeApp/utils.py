@@ -34,16 +34,28 @@ class DH_Endpoint(object):
 
 def init_DH_endpoints(instance, public_key1, public_key2, private_key1, private_key2):
     sender = DH_Endpoint(public_key1, public_key2, private_key1)
-
+    print('first')
     reciever = DH_Endpoint(public_key1, public_key2, private_key2)
+    print('second')
 
-    # generate sender's partial key
+    # generate and store sender's partial key
     sender_partial=sender.generate_partial_key()
+    instance.sender_partial_key = sender_partial
     print(sender_partial)
 
-    # generate reciever's partial key
+    # generate and store reciever's partial key
     reciever_partial = reciever.generate_partial_key()
+    instance.reciever_partial_key = reciever_partial
     print(reciever_partial)
 
+    # generate sender full key
+    sender_full_key = sender.generate_full_key(sender_partial)
+    print(sender_full_key)
+
+    # generate reciever full key
+    reciever_full_key = sender.generate_full_key(sender_partial)
+    print(reciever_full_key)
+
+    return
 
 

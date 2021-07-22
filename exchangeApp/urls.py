@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('exchange/create/', views.ExchangeView.as_view({'post':'create'}), name='create-exchange'),
-    path('exchange/update/<int:pk>/', views.ExchangeView.as_view({'put': 'update'}), name='update-exchange'),
+    path('exchange/update/<int:pk>/', views.ExchangeView.as_view({'put': 'partial_update'}), name='update-exchange'),
 
     # path('team/<int:pk>/',views.RetrieveTeamView.as_view(), name='get-team'),
     # path('team/all/<int:workspace>',views.ListTeamsView.as_view(), name='get-all-teams-in-workspace'),

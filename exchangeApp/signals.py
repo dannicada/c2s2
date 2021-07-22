@@ -17,10 +17,10 @@ def post_exchange_creation_routine(sender, **kwargs):
     if created:
         try:        
             # use sender's publickey as base
-            instance.base = User.objects.get(id = instance.sender).publickey
+            instance.base = User.objects.get(id = instance.sender.id).publickey
 
             # use reciever's publickey as prime/modulo
-            instance.prime = User.objects.get(id = instance.reciever).publickey
+            instance.prime = User.objects.get(id = instance.reciever.id).publickey
 
             instance.save()
            

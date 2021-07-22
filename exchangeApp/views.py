@@ -11,6 +11,7 @@ from rest_framework import generics, serializers, status,permissions
 class ExchangeView(ModelViewSet):
     serializer_class = ExchangeSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+    queryset = Exchange.objects.all()
 
 
     def create(self, request, *args, **kwargs):
@@ -18,7 +19,8 @@ class ExchangeView(ModelViewSet):
         create a new Exchange
         """
         data = request.data.copy()
-        data['sender'] = request.user.id
+        data['sender'] = str(request.user.id)
+        print(data)
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -27,8 +29,8 @@ class ExchangeView(ModelViewSet):
 
 
     def update(self, request, *args, **kwargs):
-        partial = True
         instance = self.get_object()
+        partial = kwargs.pop('partial', False)
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
