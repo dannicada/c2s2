@@ -30,7 +30,6 @@ SECRET_KEY = '&%tixa!-(w+xvr+b!k%+nia3-!*2hdi9^bl21whyk^x%4eg78-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -47,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
     'drf_yasg',
+    'corsheaders',
+
 
     'users',
     'filesApp',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -162,8 +164,13 @@ REST_USE_JWT = True
 # jwt
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),  
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
 }
 
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3030',
+# ] 
 # JWT_AUTH_COOKIE = 'my-app-auth'
 # JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'

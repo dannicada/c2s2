@@ -28,9 +28,9 @@ def post_exchange_creation_routine(sender, **kwargs):
            raise e
     
     else:
-        if instance.reciever_private_key is not None:
+        if instance.reciever_private_integer is not None:
 
             # generate sender's partial key
-            init_DH_endpoints(instance, instance.base, instance.prime, instance.sender_private_key, instance.reciever_private_key)
+            init_DH_endpoints(instance, instance.base, instance.prime, instance.sender_private_integer, instance.reciever_private_integer)
         else:
             pass

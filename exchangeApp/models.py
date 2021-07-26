@@ -19,5 +19,6 @@ class Exchange(models.Model):
         to=User, on_delete=models.CASCADE, related_name='exchange_reciever')
     sender_partial_key = models.PositiveIntegerField(blank=True, null=True)
     reciever_partial_key = models.PositiveIntegerField(blank=True, null=True)
-    sender_private_key = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
-    reciever_private_key = models.PositiveIntegerField(blank=True, null=True, validators=[MaxValueValidator(9999)])
+    sender_private_integer = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
+    reciever_private_integer = models.PositiveIntegerField(blank=True, null=True, validators=[MaxValueValidator(9999)])
+    message = models.CharField(null=False, blank=False, max_length=300)
