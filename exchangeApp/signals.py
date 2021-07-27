@@ -28,9 +28,10 @@ def post_exchange_creation_routine(sender, **kwargs):
            raise e
     
     else:
-        if instance.reciever_private_integer is not None:
+        if (instance.reciever_private_integer is not None) and instance.encrypted_message is None:
 
             # generate sender's partial key
-            init_DH_endpoints(instance, instance.base, instance.prime, instance.sender_private_integer, instance.reciever_private_integer)
+            init_DH_endpoints(instance, instance.base, instance.prime, instance.sender_private_integer, instance.reciever_private_integer, instance.message)
+            instance.save()
         else:
             pass

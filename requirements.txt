@@ -6,6 +6,7 @@ coreapi==2.3.3
 coreschema==0.0.4
 dj-rest-auth==2.1.7
 Django==3.2.5
+django-cors-headers==3.7.0
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.7.2
 drf-yasg==1.20.0
@@ -18,6 +19,7 @@ MarkupSafe==2.0.1
 packaging==21.0
 psycopg2-binary==2.9.1
 pycodestyle==2.7.0
+pycrypto==2.6.1
 PyJWT==2.1.0
 pyparsing==2.4.7
 python-dotenv==0.18.0
