@@ -196,7 +196,7 @@ import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
-ALLOWED_HOSTS = ['c22-api.herokuapp.com']
+ALLOWED_HOSTS = ['c2s2-api.herokuapp.com']
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
